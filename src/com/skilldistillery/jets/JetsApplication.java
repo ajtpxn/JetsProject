@@ -12,19 +12,18 @@ public class JetsApplication {
 	
 	public boolean displayMenu() {
 		Airfield airfield = new Airfield();
-		Plane[] airfieldPlanes = airfield.airfield();
-		PlaneImpl[] planes = addHashToArray(airfieldPlanes);
+		Plane[] planes = airfield.airfield();
 		Scanner scanner = new Scanner(System.in);
 		boolean stay = true;
 		while (stay) {
 			System.out.println();
 			System.out.println("1. List fleet");
-			System.out.println("2. Fly all jets");
-			System.out.println("3. View fastest jet");
-			System.out.println("4. View jet with longest range");
-			System.out.println("5. Load all Cargo Jets");
+			System.out.println("2. Fly all planes");
+			System.out.println("3. View fastest plane");
+			System.out.println("4. View plane with longest range");
+			System.out.println("5. Load all cargo planes");
 			System.out.println("6. Dogfight!");
-			System.out.println("7. Add a jet to Fleet");
+			System.out.println("7. Add a plane to the fleet");
 			System.out.println("8. Quit");
 			System.out.println();
 			System.out.println("Please enter your choice: ");
@@ -54,12 +53,6 @@ public class JetsApplication {
 			case 8:
 				stay = false;  //quit
 				break;
-			case 29:
-				createFullArray(airfieldPlanes);
-				break;
-			case 38:
-				addHashToArray(airfieldPlanes);
-				break;
 			default:
 				System.out.println("Invalid input.");
 				break;
@@ -68,25 +61,25 @@ public class JetsApplication {
 		return stay;
 	}
 
-	public void listFleet(PlaneImpl[] airfield) {  //1*******************************************1
+	public void listFleet(Plane[] airfield) {  //1*******************************************1
 		Plane[] fullArr = createFullArray(airfield);
 		for (int i = 0; i < fullArr.length; i++) {
 			System.out.println(fullArr[i].toListFleet());
 		}
 	}
 
-	public void flyAllJets (PlaneImpl[] airfield) {  //2*******************************************2
+	public void flyAllJets (Plane[] airfield) {  //2*******************************************2
 		Plane[] fullArr = createFullArray(airfield);
 		for (int i = 0; i < fullArr.length; i++) {
 			fullArr[i].fly();
 		}
 	}
 
-	public void viewFastestJet (PlaneImpl[] airfield) {  //3*******************************************3
+	public void viewFastestJet (Plane[] airfield) {  //3*******************************************3
 		double fast = 0;
 		double speed = 0;
 		int fastestHash = 0;
-		PlaneImpl[] airFieldWithHashes= addHashToArray(airfield);
+		PlaneImpl[] airFieldWithHashes = addHashToArray(airfield);
 		for (int i = 0; i < airFieldWithHashes.length; i++) {
 			speed = airFieldWithHashes[i].getSpeed();
 			if (fast < speed) {
@@ -101,7 +94,7 @@ public class JetsApplication {
 		fastestPlane.fly();
 	}
 
-	public void viewJetWithLongestRange (PlaneImpl[] airfield) {  //4*******************************************4
+	public void viewJetWithLongestRange (Plane[] airfield) {  //4*******************************************4
 		double longest = 0;
 		double range = 0;
 		int longestHash = 0;
@@ -120,11 +113,10 @@ public class JetsApplication {
 		longestPlane.fly();
 	}
 	
-	public void loadAllCargoJets (PlaneImpl[] airfield) { //5*******************************************5
-		Plane[] tempArr = planeImplToPlane(airfield);
+	public void loadAllCargoJets (Plane[] airfield) { //5*******************************************5
 		int count = 0;
 		for (int i = 0; i < airfield.length; i++) {
-			if (tempArr[i] instanceof CargoPlane ) {
+			if (airfield[i] instanceof CargoPlane ) {
 				count++;
 			}
 			else {
@@ -137,7 +129,7 @@ public class JetsApplication {
 				for (int k = 0; k < carriers.length; k++) {
 					if (carriers[k] == null) {
 						System.out.println(k);
-						carriers[k] = (CargoPlane)((CargoCarrier)airfield[i]);
+						carriers[k] = (CargoPlane)airfield[i];
 						System.out.println(carriers[k].getName());
 						break;
 					}
@@ -145,20 +137,42 @@ public class JetsApplication {
 			}
 		}
 		CargoPlane[] carriersWithCargo = new CargoPlane[count];
-//		carriersWithCargo = addCargoToArray(carriers);
+		carriersWithCargo = addCargoToArray(carriers);
 		
-//		for (int i = 0; i < carriersWithCargo.length; i++) {
-//			carriersWithCargo[i].loadCargo();
-//		}
-	}
-
-	public void dogfight (PlaneImpl[] airfield) {  //6*******************************************6
-		for (int i = 0; i < airfield.length; i++) {
-			airfield[i].fly();
+		for (int i = 0; i < carriersWithCargo.length; i++) {
+			carriersWithCargo[i].loadCargo();
 		}
 	}
 
-	public PlaneImpl[] addAJetToFleet (PlaneImpl[] inputArr) {  //7*******************************************7
+	public void dogfight (Plane[] airfield) { //6*******************************************6
+		int count = 0;
+		for (int i = 0; i < airfield.length; i++) {
+			if (airfield[i] instanceof CombatReady ) {
+				count++;
+			}
+			else {
+			}
+		}
+		FighterJet[] fighters = new FighterJet[count];
+		System.out.println(count);
+		for (int i = 0; i < airfield.length; i++) {
+			if (airfield[i] instanceof CombatReady) {
+				for (int k = 0; k < fighters.length; k++) {
+					if (fighters[k] == null) {
+						System.out.println(k);
+						fighters[k] = (FighterJet)airfield[i];
+						System.out.println(fighters[k].getName());
+						break;
+					}
+				}
+			}
+		}
+		for (int i = 0; i < fighters.length; i++) {
+			fighters[i].fight();
+		}
+	}
+
+	public Plane[] addAJetToFleet (Plane[] inputArr) {  //7*******************************************7
 		double speed = 0.0;
 		int range = 0;
 		long price = 0;
@@ -177,18 +191,22 @@ public class JetsApplication {
 		System.out.println("Range: ");
 		range = 1;//scanner.nextInt();
 		PlaneImpl newPlane = new PlaneImpl(speed, range, price, model, name);
-		PlaneImpl[] outputArr = new PlaneImpl[inputArr.length + 1];
+		System.out.println("Length: " + inputArr.length);
+		inputArr = createFullArray(inputArr);
+		Plane[] outputArr = new Plane[inputArr.length + 1];
 		System.out.println("Length: " + outputArr.length);
-		outputArr = transferAllData(inputArr, outputArr);
+		transferAllData(inputArr, outputArr);
 		for (int i = 0; i < outputArr.length; i++) {
 			if (outputArr[i] == null) {
 				outputArr[i] = newPlane;
-				for (int j = 0; j < outputArr.length; j++) {
-					System.out.println(outputArr[j].toListFleet());
-					outputArr[i].setRange(outputArr.length - 4);
-				}
-				return outputArr;
+				System.out.println(outputArr[i].getName());
+				outputArr[i].setRange((int)(Math.random()*700));
+				outputArr[i].setSpeed((int)(Math.random()*700));
+				
 			}
+		}
+		for (int j = 0; j < outputArr.length; j++) {
+			System.out.println(outputArr[j].toListFleet());
 		}
 		return outputArr;
 	}
@@ -231,11 +249,10 @@ public class JetsApplication {
 		return outputPlane;
 	}
 	
-	public PlaneImpl[] transferAllData (PlaneImpl[] inputArrGivingData, PlaneImpl[] inputArrReceivingData) {
+	public Plane[] transferAllData (Plane[] inputArrGivingData, Plane[] inputArrReceivingData) {
 		for (int i = 0; i < inputArrGivingData.length; i++) {
 			inputArrReceivingData[i] = new PlaneImpl(inputArrGivingData[i].getSpeed(), inputArrGivingData[i].getRange(),
-					inputArrGivingData[i].getPrice(), inputArrGivingData[i].getModel(), inputArrGivingData[i].getName(),
-					inputArrGivingData[i].hashCode());
+					inputArrGivingData[i].getPrice(), inputArrGivingData[i].getModel(), inputArrGivingData[i].getName());
 		}
 		return inputArrReceivingData;
 	}
@@ -249,14 +266,6 @@ public class JetsApplication {
 		return outputArr;
 	}
 	
-	public static Plane[] planeImplToPlane (PlaneImpl[] inputArr) {
-		Plane[] outputArr = new Plane[inputArr.length];
-		for (int i = 0; i < inputArr.length; i++) {
-			outputArr[i] = new Plane(inputArr[i].getSpeed(), inputArr[i].getRange(), inputArr[i].getPrice(),
-					inputArr[i].getModel(), inputArr[i].getName());
-		}
-		return outputArr;
-	}
 
 
 

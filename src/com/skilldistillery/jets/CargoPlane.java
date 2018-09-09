@@ -17,7 +17,7 @@ public class CargoPlane extends Plane implements CargoCarrier {
 	@Override
 	public void loadCargo() {
 		
-		System.out.println("Plane loaded with " + tonsOfCargo + " tons of cargo.");
+		System.out.println("Plane " + getName() + " loaded with " + tonsOfCargo + " tons of cargo.");
 		
 	}
 

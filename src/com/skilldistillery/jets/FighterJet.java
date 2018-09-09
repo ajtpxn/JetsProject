@@ -7,19 +7,20 @@ public class FighterJet extends Plane implements CombatReady {
 	}
 	
 	@Override
-	public void fight(PlaneImpl inputPlane) {
-		System.out.println(inputPlane.getName() + " fighting! ");
+	public void fight() {
+		System.out.println(getName() + " fighting! ");
 	}
 
 
 	@Override
-	public void allFight(PlaneImpl[] inputArr) {
+	public void allFight(Plane[] inputArr) {
 		
 		for (int i = 0; i < inputArr.length; i++) {
-//			inputArr[i].fight();
+			((FighterJet) inputArr[i]).fight();
 		}
 		
 	}
+
 	
 	
 
