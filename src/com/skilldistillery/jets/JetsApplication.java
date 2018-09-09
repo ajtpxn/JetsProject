@@ -91,7 +91,7 @@ public class JetsApplication {
 				
 		for (int i = 0; i < fullArr.length; i++) {
 			
-			fullArr[i].fly();
+			System.out.println(fullArr[i].toListFleet());
 			
 		}
 		
@@ -114,7 +114,6 @@ public class JetsApplication {
 		
 		double fast = 0;
 		double speed = 0;
-		String name = null;
 		int fastestHash = 0;
 		PlaneImpl[] airFieldWithHashes= addHashToArray(airfield);
 		
@@ -131,17 +130,30 @@ public class JetsApplication {
 		PlaneImpl fastestPlane = new PlaneImpl();
 		fastestPlane = planeFromHash(airFieldWithHashes, fastestHash);
 		fastestPlane.fly();
-		System.out.println("Top Speed of this plane: " + fast);
 
 	}
 
 	public void viewJetWithLongestRange (Plane[] airfield) {  //4
 		
-		for (int i = 0; i < airfield.length; i++) {
+		double longest = 0;
+		double range = 0;
+		int longestHash = 0;
+		PlaneImpl[] airFieldWithHashes= addHashToArray(airfield);
+		
+		for (int i = 0; i < airFieldWithHashes.length; i++) {
 			
-			airfield[i].fly();
-			
+			range = airFieldWithHashes[i].getRange();
+			if (longest < range) {
+				longest = range;
+				longestHash = airFieldWithHashes[i].getHash();
+			}
 		}
+		System.out.println();
+		System.out.println("Hash: " + longestHash);
+		PlaneImpl longestPlane = new PlaneImpl();
+		longestPlane = planeFromHash(airFieldWithHashes, longestHash);
+		longestPlane.fly();
+		
 		
 	}
 	
@@ -167,10 +179,24 @@ public class JetsApplication {
 
 	public void addAJetToFleet (Plane[] airfield) {  //7
 		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please input all the info for your the plane being added.");
+		System.out.println("Name: ");
+		System.out.println("Model: ");
+		System.out.println("Speed: ");
+		System.out.println("Price: ");
+		System.out.println("Range: ");
+		
+		PlaneImpl newPlane = new PlaneImpl();
 		for (int i = 0; i < airfield.length; i++) {
-			
-			airfield[i].fly();
-			
+			if (airfield[i] == null) {
+				airfield[i] = newPlane;
+			}
+		}
+		
+		Plane[] outputArr = createFullArray(airfield);
+		for (int i = 0; i < outputArr.length; i++) {
+			System.out.println(outputArr[i].toListFleet());
 		}
 
 	}

@@ -1,14 +1,9 @@
 package com.skilldistillery.jets;
 
-public interface CombatReady {
+public abstract interface CombatReady {
 
-	public static void fight() {
-
-
-
-	}
-	public static void allFight() {
-		
-	}
+	public void fight(PlaneImpl inputPlane);
+	
+	public void allFight(PlaneImpl[] inputArr);
 
 }

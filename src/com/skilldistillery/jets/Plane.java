@@ -30,11 +30,11 @@ public abstract class Plane {
 		speedInMach = speed / 980;
 		
 		
+		System.out.println("Name: " + name);
 		System.out.println("Model: " + model);
 		System.out.println("Speed: " + speed);
 		System.out.println("Price: " + price);
 		System.out.println("Range: " + range);
-		System.out.println("Name: " + name);
 	}
 
 	public double getSpeed() {
@@ -141,6 +141,10 @@ public abstract class Plane {
 		if (Double.doubleToLongBits(speedInMach) != Double.doubleToLongBits(other.speedInMach))
 			return false;
 		return true;
+	}
+
+	public String toListFleet() {
+		return "Name: " + name + ",\t\tSpeed: " + speed + ",\tRange: " + range + ",\tPrice: " + price + ",\tModel: " + model;
 	}
 
 	

@@ -6,4 +6,13 @@ public class CargoPlane extends Plane implements CargoCarrier {
 		super(speed, range, price, model, name);
 	}
 
+	@Override
+	public void loadCargo() {
+		
+		System.out.println("Plane loaded.");
+		
+	}
+	
+	
+
 }
