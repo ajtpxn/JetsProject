@@ -29,4 +29,28 @@ public class CargoPlane extends Plane implements CargoCarrier {
 		this.tonsOfCargo = tonsOfCargo;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + tonsOfCargo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CargoPlane other = (CargoPlane) obj;
+		if (tonsOfCargo != other.tonsOfCargo)
+			return false;
+		return true;
+	}
+	
+	
+
 }

@@ -4,41 +4,62 @@ public class JetsTesterApp {
 	
 	public static void main(String[] args) {
 		
-		CargoCarrier[] carriers;
+		CargoPlane[] carriers;
 		
 		Airfield airfield = new Airfield();
 		Plane[] airfieldPlanes = airfield.airfield();
 		
-		Math.random();
-		
 		int count = 0;
 		for (int i = 0; i < airfieldPlanes.length; i++) {
-			if (airfieldPlanes[i] instanceof CargoCarrier) {
+			if (airfieldPlanes[i] instanceof CargoPlane) {
 				count++;
 			}
 			else {
 			}
 		}
-		carriers = new CargoCarrier[count];
+		carriers = new CargoPlane[count];
 		for (int i = 0; i < airfieldPlanes.length; i++) {
-			if (airfieldPlanes[i] instanceof CargoCarrier) {
+			if (airfieldPlanes[i] instanceof CargoPlane) {
 				for (int k = 0; k < carriers.length; k++) {
 					if (carriers[k] == null) {
-						carriers[k] = (CargoCarrier)airfieldPlanes[i];
+						carriers[k] = (CargoPlane)airfieldPlanes[i];
 						break;
 					}
 				}
 			}
 		}
-		for (int i = 0; i < carriers.length; i++) {
-			carriers[i].loadCargo();
+		
+		CargoPlane[] carriersWithCargo = new CargoPlane[count];
+		carriersWithCargo = addCargoToArray(carriers);
+		
+		
+		
+		for (int i = 0; i < carriersWithCargo.length; i++) {
+			carriersWithCargo[i].loadCargo();
 		}
+		
+		
+		
+		
 	}
 	
-	public int addCargo() {
-		int cargo = 1;
-		
-		
-		return cargo;
+	
+	public static CargoPlane[] addCargoToArray (CargoPlane[] inputArr) {
+		CargoPlane[] outputArr = new CargoPlane[inputArr.length];
+		for (int i = 0; i < inputArr.length; i++) {
+			outputArr[i] = new CargoPlane(inputArr[i].getSpeed(), inputArr[i].getRange(), inputArr[i].getPrice(),
+					inputArr[i].getModel(), inputArr[i].getName(), (int)(Math.random()*40));
+		}
+		return outputArr;
 	}
+	
+	public static CargoPlane[] planeImplToCargo (PlaneImpl[] inputArr) {
+		CargoPlane[] outputArr = new CargoPlane[inputArr.length];
+		for (int i = 0; i < inputArr.length; i++) {
+			outputArr[i] = new CargoPlane(inputArr[i].getSpeed(), inputArr[i].getRange(), inputArr[i].getPrice(),
+					inputArr[i].getModel(), inputArr[i].getName(), 1);
+		}
+		return outputArr;
+	}
+	
 }
