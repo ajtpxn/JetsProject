@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Airfield {
 	
-	private Plane[] planes = new Plane[12];
+	private Plane[] planes = new Plane[8];
 	
 	public Plane[] airfield() {
 		
