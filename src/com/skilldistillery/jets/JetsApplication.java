@@ -15,7 +15,8 @@ public class JetsApplication {
 	
 	public boolean displayMenu() {
 		Airfield airfield = new Airfield();
-		airfield.airfield();
+		
+		Plane[] planes = airfield.airfield();
 		
 		Scanner scanner = new Scanner(System.in);
 		boolean stay = true;
@@ -34,31 +35,31 @@ public class JetsApplication {
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
-				listFleet(airfield.airfield());
+				listFleet(planes);
 				break;
 
 			case 2:
-				flyAllJets(airfield.airfield());
+				flyAllJets(planes);
 				break;
 
 			case 3:
-				viewFastestJet(airfield.airfield());
+				viewFastestJet(planes);
 				break;
 
 			case 4:
-				viewJetWithLongestRange(airfield.airfield());
+				viewJetWithLongestRange(planes);
 				break;
 
 			case 5:
-				loadAllCargoJets(airfield.airfield());
+				loadAllCargoJets(planes);
 				break;
 
 			case 6:
-				dogfight(airfield.airfield());
+				dogfight(planes);
 				break;
 
 			case 7:
-				addAJetToFleet(airfield.airfield());
+				planes = addAJetToFleet(planes);
 				break;
 
 			case 8:
@@ -67,11 +68,11 @@ public class JetsApplication {
 				break;
 				
 			case 29:
-				createFullArray(airfield.airfield());
+				createFullArray(planes);
 				break;
 				
 			case 38:
-				addHashToArray(airfield.airfield());
+				addHashToArray(planes);
 				break;
 				
 			default:
@@ -79,7 +80,6 @@ public class JetsApplication {
 				break;
 				
 			}
-			stay = false;
 		}
 		return stay;
 	}
@@ -177,27 +177,52 @@ public class JetsApplication {
 
 	}
 
-	public void addAJetToFleet (Plane[] airfield) {  //7
-		
+	public PlaneImpl[] addAJetToFleet (Plane[] airfield) {  //7
+
+		double speed = 0.0;
+		int range = 0;
+		long price = 0;
+		String model = null;
+		String name = null;
+
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please input all the info for your the plane being added.");
 		System.out.println("Name: ");
+		name = scanner.nextLine();
 		System.out.println("Model: ");
+		model = scanner.nextLine();
 		System.out.println("Speed: ");
+		speed = scanner.nextDouble();
 		System.out.println("Price: ");
+		price = scanner.nextLong();
 		System.out.println("Range: ");
+		range = scanner.nextInt();
+		PlaneImpl newPlane = new PlaneImpl(speed, range, price, model, name);
 		
-		PlaneImpl newPlane = new PlaneImpl();
+		int count = 0;
+		for (int i = 0; i < airfield.length; i++) {
+			if (airfield[i] != null) {
+				count++;
+			}
+		}
+		if (count == 0) {
+			
+			
+		}
+		
+		
+		
 		for (int i = 0; i < airfield.length; i++) {
 			if (airfield[i] == null) {
 				airfield[i] = newPlane;
+				break;
 			}
 		}
-		
-		Plane[] outputArr = createFullArray(airfield);
+		PlaneImpl[] outputArr = addHashToArray(airfield);
 		for (int i = 0; i < outputArr.length; i++) {
 			System.out.println(outputArr[i].toListFleet());
 		}
+		return outputArr;
 
 	}
 	
@@ -216,7 +241,6 @@ public class JetsApplication {
 
 	public Plane[] createFullArray (Plane[] inputArr) {
 		
-		String model = null;
 		int count = 0;
 		for (int i = 0; i < inputArr.length; i++) {
 			if (inputArr[i] != null) {
@@ -247,6 +271,11 @@ public class JetsApplication {
 		}
 		
 		return outputPlane;
+	}
+	
+	public PlaneImpl[] makeRoom (PlaneImpl[] inputArr) {
+		PlaneImpl[] outputPlaneImpl = new PlaneImpl[inputArr.length + 1];
+		return outputPlaneImpl;
 	}
 
 
