@@ -55,6 +55,20 @@ public abstract class Plane {
 		System.out.println("Flight Time: " + flightTime);
 		System.out.println("Speed in Mach: " + speedInMach);
 	}
+	
+	public void info() {
+		flightTime = (double)range / speed;
+		speedInMach = speed / 980;
+		String formatedPrice = NumberFormat.getCurrencyInstance().format(price);
+		
+		System.out.println("Name: " + name);
+		System.out.println("Model: " + model);
+		System.out.println("Speed: " + speed);
+		System.out.println("Price: " + formatedPrice);
+		System.out.println("Range: " + range);
+		System.out.println("Flight Time: " + flightTime);
+		System.out.println("Speed in Mach: " + speedInMach);
+	}
 
 	public double getSpeed() {
 		return speed;
