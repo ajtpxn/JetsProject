@@ -1,5 +1,8 @@
 package com.skilldistillery.jets;
 
+import java.text.NumberFormat;
+import java.util.Scanner;
+
 public abstract class Plane {
 	
 	private double speed = 0.0;
@@ -9,6 +12,8 @@ public abstract class Plane {
 	private String name = null;
 	private double flightTime = 0.0;
 	private double speedInMach = 0.0;
+	
+
 	
 			
 	public Plane(double speed, int range, long price, String model, String name) {
@@ -20,21 +25,36 @@ public abstract class Plane {
 		this.name = name;
 	}
 	
+	public Plane(double speed, int range, long price, String model, String name, double flightTime, 
+			double speedInMach) {
+		super();
+		this.speed = speed;
+		this.range = range;
+		this.price = price;
+		this.model = model;
+		this.name = name;
+		this.flightTime = flightTime;
+		this.speedInMach = speedInMach;
+	}
+	
 	public Plane() {
 		
 	}
 	
 	
 	public void fly() {
-		flightTime = (double)range * speed;
+		flightTime = (double)range / speed;
 		speedInMach = speed / 980;
+		String formatedPrice = formatedPrice = NumberFormat.getCurrencyInstance().format(price);
 		
-		
+		System.out.println("******** fly ********");
 		System.out.println("Name: " + name);
 		System.out.println("Model: " + model);
 		System.out.println("Speed: " + speed);
-		System.out.println("Price: " + price);
+		System.out.println("Price: " + formatedPrice);
 		System.out.println("Range: " + range);
+		System.out.println("Flight Time: " + flightTime);
+		System.out.println("Speed in Mach: " + speedInMach);
 	}
 
 	public double getSpeed() {
@@ -77,21 +97,6 @@ public abstract class Plane {
 		this.name = name;
 	}
 
-	public double getFlightTime() {
-		return flightTime;
-	}
-
-	public void setFlightTime(double flightTime) {
-		this.flightTime = flightTime;
-	}
-
-	public double getSpeedInMach() {
-		return speedInMach;
-	}
-
-	public void setSpeedInMach(double speedInMach) {
-		this.speedInMach = speedInMach;
-	}
 
 	@Override
 	public int hashCode() {
@@ -144,10 +149,18 @@ public abstract class Plane {
 	}
 
 	public String toListFleet() {
-		return "Name: " + name + ",\t\tSpeed: " + speed + ",\tRange: " + range + ",\tPrice: " + price + ",\tModel: " + model;
+		String formatedPrice = formatedPrice = NumberFormat.getCurrencyInstance().format(price);
+		return "Name: " + name + ",\t\tSpeed: " + speed + ",\tRange: " + range + ",\tPrice: " + formatedPrice + ",\tModel: " + model;
+	}
+	
+	
+	private Plane[] planeArr;
+	
+	
+	public void setAddAPlaneToFleetClass(Plane[] inputArr) {
+		Plane[] outputPlane = null;
+		planeArr = outputPlane;
 	}
 
-	
-	
 	
 }

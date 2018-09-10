@@ -4,18 +4,18 @@ import java.util.Arrays;
 
 public class Airfield {
 	
-	private Plane[] planes = new Plane[8];
+	private Plane[] planes = new Plane[12];
 	
 	public Plane[] airfield() {
 		
-		planes[0] = new FighterJet(12, 123, 100, "F-1", "FighterOne");
-		planes[1] = new CargoPlane(23, 456, 2000, "C-130", "CargoOne  ");
-		planes[2] = new FighterJet(43, 321, 40, "F-1", "FighterTwo");
-		planes[3] = new CargoPlane(200, 789, 400, "C-130", "CargoTwo  ");
-		planes[4] = new FighterJet(200, 324, 354, "F-1", "FighterThree");
-		planes[5] = new CargoPlane(2, 1234, 400, "C-130", "CargoThree");
-		planes[6] = new FighterJet(400, 263, 231, "F-1", "FighterFour");
-		planes[7] = new CargoPlane(19, 300, 400, "C-130", "CargoFour");
+		planes[0] = new FighterJet(520, 123, 10_000_000, "F-1", "FighterOne");
+		planes[1] = new CargoPlane(230, 456, 20_000_000, "C-130", "CargoOne  ");
+		planes[2] = new FighterJet(430, 321, 40_000_000, "F-2", "FighterTwo");
+		planes[3] = new CargoPlane(300, 789, 400_000_000, "C-230", "CargoTwo  ");
+		planes[4] = new FighterJet(1200, 324, 354_000_000, "F-3", "FighterThree");
+		planes[5] = new CargoPlane(90, 1234, 40_000_000, "C-330", "CargoThree");
+		planes[6] = new FighterJet(403, 263, 231_000_000, "F-4", "FighterFour");
+		planes[7] = new CargoPlane(190, 300, 100_000_000, "C-430", "CargoFour");
 		
 		
 		for (int i = 0; i < planes.length; i++) {
