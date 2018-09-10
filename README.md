@@ -1,6 +1,6 @@
 ## Jets Project
 
-### This is my favorite Jets Project
+### Skill Distillery Week Two Jets Project
 
 How to run this program:
 
@@ -12,7 +12,7 @@ How to run this program:
 
 Here is what the overall architecture of the program looks like in UML:
 
-[[https://github.com/ajtpxn/JetsProject/blob/master/UMLJets.png]]
+![Jets UML](UMLJets.png)
 
 Thanks,
 
