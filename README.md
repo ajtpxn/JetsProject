@@ -10,10 +10,6 @@ How to run this program:
 4. Run in the terminal with "java com.skilldistillery.jets.JetsApplication"
 5. After that it should be pretty self explanatory
 
-Here is what the source folder you will be downloading should look like on GitHub:
-
-[[https://github.com/ajtpxn/JetsProject/blob/master/SourceFolder.png]]
-
 Here is what the overall architecture of the program looks like in UML:
 
 [[https://github.com/ajtpxn/JetsProject/blob/master/UMLJets.png]]
