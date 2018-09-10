@@ -1,7 +1,6 @@
 package com.skilldistillery.jets;
 
 import java.text.NumberFormat;
-import java.util.Scanner;
 
 public abstract class Plane {
 	
@@ -45,7 +44,7 @@ public abstract class Plane {
 	public void fly() {
 		flightTime = (double)range / speed;
 		speedInMach = speed / 980;
-		String formatedPrice = formatedPrice = NumberFormat.getCurrencyInstance().format(price);
+		String formatedPrice = NumberFormat.getCurrencyInstance().format(price);
 		
 		System.out.println("******** fly ********");
 		System.out.println("Name: " + name);
@@ -149,18 +148,11 @@ public abstract class Plane {
 	}
 
 	public String toListFleet() {
-		String formatedPrice = formatedPrice = NumberFormat.getCurrencyInstance().format(price);
+		String formatedPrice = NumberFormat.getCurrencyInstance().format(price);
 		return "Name: " + name + ",\t\tSpeed: " + speed + ",\tRange: " + range + ",\tPrice: " + formatedPrice + ",\tModel: " + model;
 	}
 	
 	
-	private Plane[] planeArr;
-	
-	
-	public void setAddAPlaneToFleetClass(Plane[] inputArr) {
-		Plane[] outputPlane = null;
-		planeArr = outputPlane;
-	}
 
 	
 }

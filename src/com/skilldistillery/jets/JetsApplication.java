@@ -174,24 +174,19 @@ public class JetsApplication {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please input all the info for your the plane being added.");
 		System.out.println("Name: ");
-		name = "Added Plane"; //scanner.nextLine();
+		name = scanner.nextLine();
 		System.out.println("Model: ");
-		model = "plane"; //scanner.nextLine();
+		model = scanner.nextLine();
 		System.out.println("Speed: ");
-		speed = 1;//scanner.nextDouble();
+		speed = scanner.nextDouble();
 		System.out.println("Price: ");
-		price = 1;//scanner.nextLong();
+		price = scanner.nextLong();
 		System.out.println("Range: ");
-		range = 1;//scanner.nextInt();
+		range = scanner.nextInt();
 		PlaneImpl newPlane = new PlaneImpl(speed, range, price, model, name);
-//		planes = createFullArray(planes);
-//		transferAllData(inputArr, outputArr);
 		for (int i = 0; i < planes.length; i++) {
 			if (planes[i] == null) {
 				planes[i] = newPlane;
-				planes[i].setRange((int)(Math.random()*2000));
-				planes[i].setSpeed((int)(Math.random()*700));
-				planes[i].setPrice(planes.length - 4);
 				break;
 			}
 		}
