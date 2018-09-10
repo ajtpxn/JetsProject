@@ -12,11 +12,11 @@ How to run this program:
 
 Here is what the source folder you will be downloading should look like on GitHub:
 
-![UML Jets](https://github.com/ajtpxn/JetsProject/blob/master/images/SourceFolder.png)
+[[https://github.com/ajtpxn/JetsProject/blob/master/SourceFolder.png]]
 
 Here is what the overall architecture of the program looks like in UML:
 
-![UML Jets](https://github.com/ajtpxn/JetsProject/blob/master/images/UMLJets.png)
+[[https://github.com/ajtpxn/JetsProject/blob/master/UMLJets.png]]
 
 Thanks,
 
